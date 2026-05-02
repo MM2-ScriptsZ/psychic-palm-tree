@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>LOKUS HUN SCRIPT | Keyless Forever</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated Background Elements */
+        /* Animated Background */
         .bg-blur-1 {
             position: fixed;
             width: 400px;
@@ -64,7 +64,7 @@
             50% { transform: translate(20px, 20px); }
         }
 
-        /* Main Container */
+        /* Hero Section */
         .hero {
             text-align: center;
             max-width: 750px;
@@ -78,29 +78,6 @@
             animation: float 6s ease-in-out infinite;
             position: relative;
             z-index: 1;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-
-        .hero > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         @keyframes float {
@@ -116,8 +93,6 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-            letter-spacing: -0.02em;
             margin-bottom: 12px;
             animation: gradientShift 4s ease infinite;
             text-transform: uppercase;
@@ -135,9 +110,7 @@
             margin-bottom: 30px;
             opacity: 0.95;
             font-weight: 500;
-            letter-spacing: 0.3px;
             text-transform: uppercase;
-            line-height: 1.3;
         }
 
         .feature-grid {
@@ -145,7 +118,6 @@
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 12px;
             margin-bottom: 35px;
-            text-align: center;
         }
 
         .feature-item {
@@ -153,20 +125,18 @@
             border: 1px solid rgba(0, 255, 255, 0.2);
             padding: 15px 12px;
             border-radius: 14px;
+            text-align: center;
             transition: all 0.3s ease;
         }
 
         .feature-item:active {
             background: rgba(0, 255, 255, 0.15);
-            border-color: rgba(0, 255, 255, 0.5);
             transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         }
 
         @media (hover: hover) {
             .feature-item:hover {
                 background: rgba(0, 255, 255, 0.15);
-                border-color: rgba(0, 255, 255, 0.5);
                 transform: translateY(-5px);
                 box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
             }
@@ -183,10 +153,9 @@
             color: #b0d4ff;
             font-size: clamp(0.75rem, 2.5vw, 0.9rem);
             font-weight: 600;
-            line-height: 1.2;
         }
 
-        /* GET SCRIPT BUTTON */
+        /* Button */
         .get-script-btn {
             background: linear-gradient(90deg, #00d4ff, #0088ff);
             border: none;
@@ -197,10 +166,10 @@
             color: #0a0f1e;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px #0088ff, 0 0 40px rgba(0, 136, 255, 0.3);
+            box-shadow: 0 0 20px #0088ff;
             display: inline-flex;
             align-items: center;
-            gap: clamp(10px, 2vw, 15px);
+            gap: 12px;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
@@ -220,31 +189,22 @@
             transition: left 0.6s ease;
         }
 
-        .get-script-btn:active::before {
-            left: 100%;
-        }
-
         .get-script-btn:active {
             transform: scale(0.95);
         }
 
         @media (hover: hover) {
+            .get-script-btn:hover {
+                transform: scale(1.08) translateY(-3px);
+                box-shadow: 0 0 40px #0088ff;
+            }
+
             .get-script-btn:hover::before {
                 left: 100%;
             }
-
-            .get-script-btn:hover {
-                transform: scale(1.08) translateY(-3px);
-                box-shadow: 0 0 40px #0088ff, 0 0 80px rgba(0, 136, 255, 0.4);
-                background: linear-gradient(90deg, #00ffff, #0055ff);
-            }
         }
 
-        .get-script-btn i {
-            font-size: inherit;
-        }
-
-        /* MODAL */
+        /* Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -278,7 +238,7 @@
             width: 100%;
             padding: clamp(25px, 6vw, 50px);
             border: 2px solid rgba(0, 255, 255, 0.5);
-            box-shadow: 0 0 80px rgba(0, 255, 255, 0.3), inset 0 0 40px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 80px rgba(0, 255, 255, 0.3);
             position: relative;
             animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 1001;
@@ -287,11 +247,11 @@
 
         @keyframes modalPop {
             from {
-                transform: scale(0.85) rotateX(10deg);
+                transform: scale(0.85);
                 opacity: 0;
             }
             to {
-                transform: scale(1) rotateX(0);
+                transform: scale(1);
                 opacity: 1;
             }
         }
@@ -311,31 +271,30 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #0ff;
-            background: rgba(0, 255, 255, 0.1);
-            border: none;
             width: 45px;
             height: 45px;
+            background: rgba(0, 255, 255, 0.1);
+            border: none;
             border-radius: 50%;
+            color: #0ff;
+            font-size: 24px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: 0.3s ease;
-            touch-action: manipulation;
         }
 
         .close-modal:active {
-            color: #ff4444;
             background: rgba(255, 68, 68, 0.2);
-            transform: rotate(90deg) scale(0.9);
+            color: #ff4444;
+            transform: scale(0.9);
         }
 
         @media (hover: hover) {
             .close-modal:hover {
-                color: #ff4444;
                 background: rgba(255, 68, 68, 0.2);
+                color: #ff4444;
                 transform: rotate(90deg);
             }
         }
@@ -347,55 +306,17 @@
             background: rgba(0, 255, 255, 0.08);
             border-radius: 14px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .step::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 3px;
-            background: linear-gradient(180deg, #0ff, #00a6ff, transparent);
-            animation: slideDown 2s ease infinite;
-        }
-
-        @keyframes slideDown {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        .step:active {
-            background: rgba(0, 255, 255, 0.15);
-            transform: translateX(5px);
-            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
-        }
-
-        @media (hover: hover) {
-            .step:hover {
-                background: rgba(0, 255, 255, 0.15);
-                transform: translateX(8px);
-                box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-            }
         }
 
         .step h3 {
-            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
             color: #0ff;
             margin-bottom: 10px;
             font-weight: 700;
             text-transform: uppercase;
-        }
-
-        .step i {
-            margin-right: 8px;
-            color: #00ffff;
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
         }
 
         .step p {
-            margin-top: 8px;
             color: #ccc;
             line-height: 1.5;
             font-size: clamp(0.85rem, 2.5vw, 0.95rem);
@@ -421,242 +342,21 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 0 20px rgba(0, 255, 153, 0.4);
-            touch-action: manipulation;
             min-height: 48px;
         }
 
         .proceed-btn:active {
-            transform: translateY(0) scale(0.98);
+            transform: scale(0.98);
         }
 
         @media (hover: hover) {
             .proceed-btn:hover {
                 transform: translateY(-3px) scale(1.02);
                 box-shadow: 0 0 40px rgba(0, 255, 153, 0.6);
-                background: linear-gradient(90deg, #00ffaa, #00dd99);
             }
         }
 
-        /* BROWSER WINDOW - NOT FULLSCREEN */
-        .browser-window {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 1000px;
-            height: 85vh;
-            background: #0a0f1e;
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-            animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border-radius: 12px;
-            box-shadow: 0 0 60px rgba(0, 255, 255, 0.4), 0 25px 50px rgba(0, 0, 0, 0.8);
-            border: 2px solid rgba(0, 255, 255, 0.3);
-        }
-
-        .browser-window.active {
-            display: flex;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -45%) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-
-        .browser-header {
-            background: linear-gradient(90deg, #1a1a2e, #16213e);
-            padding: clamp(10px, 2vw, 14px);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
-            border-radius: 10px 10px 0 0;
-            flex-wrap: wrap;
-        }
-
-        .browser-title-bar {
-            background: rgba(0, 255, 255, 0.1);
-            padding: 8px 12px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #0ff;
-            font-size: 12px;
-            font-weight: 600;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .browser-controls {
-            display: flex;
-            gap: 8px;
-        }
-
-        .browser-btn {
-            color: #0ff;
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-            cursor: pointer;
-            background: rgba(0, 255, 255, 0.1);
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            touch-action: manipulation;
-            min-width: 38px;
-            min-height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .browser-btn:active {
-            transform: scale(0.9);
-        }
-
-        @media (hover: hover) {
-            .browser-btn:hover {
-                background: rgba(0, 255, 255, 0.25);
-                transform: scale(1.08);
-                box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            }
-        }
-
-        .url-bar-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 255, 255, 0.05);
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            min-width: 150px;
-            min-height: 38px;
-        }
-
-        .url-bar-container:focus-within {
-            background: rgba(0, 255, 255, 0.1);
-            border-color: rgba(0, 255, 255, 0.6);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-        }
-
-        .url-bar {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #0ff;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            font-family: 'Courier New', monospace;
-            outline: none;
-            font-weight: 500;
-        }
-
-        .url-bar::placeholder {
-            color: rgba(0, 255, 255, 0.4);
-        }
-
-        .lock-icon {
-            color: #00ff99;
-            font-size: 1rem;
-        }
-
-        .close-browser {
-            background: linear-gradient(90deg, #ff4444, #ff0000);
-            border: none;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
-            touch-action: manipulation;
-            min-height: 38px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .close-browser:active {
-            transform: scale(0.95);
-        }
-
-        @media (hover: hover) {
-            .close-browser:hover {
-                transform: scale(1.05);
-                box-shadow: 0 0 30px rgba(255, 68, 68, 0.5);
-                background: linear-gradient(90deg, #ff0000, #cc0000);
-            }
-        }
-
-        .browser-content {
-            flex: 1;
-            width: 100%;
-            background: white;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0 0 10px 10px;
-        }
-
-        .browser-content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: white;
-        }
-
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.1);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-
-        .loading-overlay.active {
-            display: flex;
-        }
-
-        .spinner {
-            border: 4px solid rgba(0, 255, 255, 0.2);
-            border-top: 4px solid #0ff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            color: #0ff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-top: 15px;
-        }
-
-        /* Overlay backdrop */
+        /* CHROME-STYLE FAKE BROWSER */
         .browser-backdrop {
             position: fixed;
             top: 0;
@@ -664,68 +364,295 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
             z-index: 1999;
             display: none;
+            transition: all 0.3s ease;
         }
 
         .browser-backdrop.active {
             display: block;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .chrome-browser {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid #333;
+        }
+
+        .chrome-browser.active {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -48%) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Chrome Header */
+        .chrome-header {
+            background: linear-gradient(180deg, #2b2b2b 0%, #1f1f1f 100%);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #333;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .chrome-tabs {
+            display: flex;
+            gap: 2px;
+            padding: 8px 8px 0 8px;
+            align-items: flex-end;
+        }
+
+        .chrome-tab {
+            background: #313131;
+            border: 1px solid #444;
+            border-radius: 8px 8px 0 0;
+            padding: 10px 16px;
+            color: #ddd;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chrome-tab.active {
+            background: #1a1a1a;
+            border-bottom-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .chrome-tab:active {
+            opacity: 0.8;
+        }
+
+        @media (hover: hover) {
+            .chrome-tab:hover {
+                background: #3a3a3a;
+            }
+        }
+
+        .tab-close {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: auto;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .tab-close:hover {
+            opacity: 1;
+        }
+
+        /* Chrome Address Bar */
+        .chrome-address-bar {
+            background: #2b2b2b;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chrome-buttons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .chrome-btn {
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .chrome-btn:hover {
+            background: #3a3a3a;
+            color: #fff;
+        }
+
+        .chrome-btn:active {
+            background: #4a4a4a;
+        }
+
+        .chrome-url-input {
+            flex: 1;
+            background: #313131;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 6px 12px;
+            color: #0ff;
+            font-size: 13px;
+            font-family: 'Courier New', monospace;
+            outline: none;
+            font-weight: 500;
+        }
+
+        .chrome-url-input:focus {
+            background: #2a2a2a;
+            border-color: #0ff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        .chrome-url-input::placeholder {
+            color: #666;
+        }
+
+        .lock-icon {
+            color: #00ff99;
+            font-size: 14px;
+        }
+
+        .chrome-close {
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .chrome-close:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .chrome-close:active {
+            transform: scale(0.9);
+        }
+
+        /* Browser Content */
+        .chrome-content {
+            flex: 1;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .chrome-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .loading-spinner.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #0ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #666;
+            font-size: 12px;
         }
 
         @media (max-width: 768px) {
-            .browser-window {
+            .chrome-browser {
                 width: 95%;
-                height: 90vh;
+                height: 80vh;
             }
 
-            .browser-header {
-                flex-wrap: wrap;
-            }
-
-            .url-bar-container {
-                min-width: 100%;
-                order: 2;
-                flex-basis: 100%;
-                margin-top: 8px;
-            }
-
-            .close-browser {
-                order: 3;
+            .chrome-tab {
+                max-width: 150px;
+                padding: 8px 12px;
             }
         }
 
         @media (max-width: 480px) {
-            .browser-window {
+            .chrome-browser {
                 width: 100%;
                 height: 95vh;
                 border-radius: 8px;
             }
 
-            .browser-btn {
-                padding: 6px 8px;
-                min-width: 34px;
-                min-height: 34px;
-                font-size: 0.9rem;
+            .chrome-browser.active {
+                bottom: 0;
+                top: auto;
+                transform: translate(-50%, 0);
             }
 
-            .close-browser {
+            .chrome-tab {
                 padding: 6px 10px;
-                min-height: 34px;
+                font-size: 11px;
             }
 
-            .browser-title-bar {
-                display: none;
+            .chrome-btn {
+                width: 28px;
+                height: 28px;
             }
         }
 
-        /* Prevent zoom on input focus */
         input, button, textarea, select {
             font-size: 16px !important;
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
         }
 
         @supports (padding: max(0px)) {
@@ -740,32 +667,20 @@
 </head>
 <body>
 
-<!-- Background Animations -->
+<!-- Background -->
 <div class="bg-blur-1"></div>
 <div class="bg-blur-2"></div>
 
-<!-- Main Hero Section -->
+<!-- Hero -->
 <div class="hero">
     <h1>🔥 LOKUS HUN SCRIPT 🔥</h1>
     <div class="tagline">⚡ KEYLESS FOREVER • NO EXPIRY • AUTO-UPDATE ⚡</div>
     
     <div class="feature-grid">
-        <div class="feature-item">
-            <i class="fas fa-infinity"></i>
-            <p>Lifetime</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-lock-open"></i>
-            <p>No Keys</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-microchip"></i>
-            <p>No HWID</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-bolt"></i>
-            <p>Auto-Update</p>
-        </div>
+        <div class="feature-item"><i class="fas fa-infinity"></i><p>Lifetime</p></div>
+        <div class="feature-item"><i class="fas fa-lock-open"></i><p>No Keys</p></div>
+        <div class="feature-item"><i class="fas fa-microchip"></i><p>No HWID</p></div>
+        <div class="feature-item"><i class="fas fa-bolt"></i><p>Auto-Update</p></div>
     </div>
 
     <button class="get-script-btn" id="openModalBtn">
@@ -773,35 +688,29 @@
     </button>
 </div>
 
-<!-- Verification Modal -->
+<!-- Modal -->
 <div id="verificationModal" class="modal">
     <div class="modal-content">
         <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
-        
-        <div class="modal-title">
-            <i class="fas fa-shield-alt"></i> Verification
+        <div class="modal-title"><i class="fas fa-shield-alt"></i> Verification</div>
+
+        <div class="step">
+            <h3><i class="fab fa-rocketchat"></i> Step 1: Join Group</h3>
+            <p><strong>REQUIREMENT:</strong> Account must be <span>7+ days old</span></p>
         </div>
 
         <div class="step">
-            <h3><i class="fab fa-rocketchat"></i> Step 1</h3>
-            <p><strong>Join Roblox Group</strong></p>
-            <p><i class="fas fa-info-circle"></i> Account must be <span>7+ days old</span></p>
+            <h3><i class="fas fa-check-circle"></i> Step 2: Verify</h3>
+            <p>🔓 Unlock <span>KEYLESS ACCESS FOREVER</span></p>
         </div>
 
         <div class="step">
-            <h3><i class="fas fa-check-circle"></i> Step 2</h3>
-            <p><strong>Complete Verification</strong></p>
-            <p>🔓 Unlock <span>KEYLESS ACCESS</span></p>
+            <h3><i class="fas fa-gamepad"></i> Step 3: Enjoy</h3>
+            <p>✅ Lifetime • No keys • No HWID ban</p>
         </div>
 
-        <div class="step">
-            <h3><i class="fas fa-gamepad"></i> Step 3</h3>
-            <p><strong>Enjoy Unlimited Access</strong></p>
-            <p>✅ Lifetime • No keys • No HWID</p>
-        </div>
-
-        <button class="proceed-btn" id="proceedToGroupBtn">
-            <i class="fas fa-arrow-right"></i> Proceed
+        <button class="proceed-btn" id="proceedBtn">
+            <i class="fas fa-arrow-right"></i> Proceed to Browser
         </button>
     </div>
 </div>
@@ -809,119 +718,108 @@
 <!-- Browser Backdrop -->
 <div class="browser-backdrop" id="browserBackdrop"></div>
 
-<!-- Browser Window (Not Fullscreen) -->
-<div class="browser-window" id="browserWindow">
-    <div class="browser-header">
-        <div class="browser-controls">
-            <button class="browser-btn" id="backBtn" title="Back"><i class="fas fa-arrow-left"></i></button>
-            <button class="browser-btn" id="forwardBtn" title="Forward"><i class="fas fa-arrow-right"></i></button>
-            <button class="browser-btn" id="refreshBtn" title="Refresh"><i class="fas fa-sync-alt"></i></button>
-            <button class="browser-btn" id="homeBtn" title="Home"><i class="fas fa-home"></i></button>
+<!-- Chrome-Style Fake Browser -->
+<div class="chrome-browser" id="chromeBrowser">
+    <div class="chrome-header">
+        <div class="chrome-tabs">
+            <div class="chrome-tab active">
+                <i class="fas fa-shield-alt" style="color: #0ff;"></i>
+                <span>Verification</span>
+            </div>
         </div>
-
-        <div class="url-bar-container">
-            <i class="fas fa-lock lock-icon"></i>
-            <input type="text" class="url-bar" id="urlBar" placeholder="Enter URL or Group ID..." spellcheck="false" autocomplete="off">
+        <div class="chrome-address-bar">
+            <div class="chrome-buttons">
+                <button class="chrome-btn" id="backBtn" title="Back"><i class="fas fa-chevron-left"></i></button>
+                <button class="chrome-btn" id="forwardBtn" title="Forward"><i class="fas fa-chevron-right"></i></button>
+                <button class="chrome-btn" id="refreshBtn" title="Reload"><i class="fas fa-redo"></i></button>
+            </div>
+            <i class="lock-icon fas fa-lock"></i>
+            <input type="text" class="chrome-url-input" id="urlInput" placeholder="Address bar" spellcheck="false" autocomplete="off">
+            <button class="chrome-close" id="closeBrowserBtn"><i class="fas fa-times"></i></button>
         </div>
-
-        <button class="close-browser" id="closeBrowserBtn"><i class="fas fa-times"></i> Close</button>
     </div>
 
-    <div class="browser-content">
-        <div class="loading-overlay" id="loadingOverlay">
+    <div class="chrome-content">
+        <div class="loading-spinner" id="loadingSpinner">
             <div class="spinner"></div>
-            <div class="loading-text">Loading content...</div>
+            <div class="loading-text">Loading...</div>
         </div>
-        <iframe id="contentIframe" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-modals allow-top-navigation"></iframe>
+        <iframe id="contentFrame" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-modals allow-top-navigation" src="about:blank"></iframe>
     </div>
 </div>
 
 <script>
-    const ROBLOX_GROUP_URL = "https://www.roblox.com/groups/3451464/Lokus-Hub#!/about";
+    const ROBLOX_GROUP = "https://www.roblox.com/groups/3451464/Lokus-Hub#!/about";
 
-    // Proxy services for X-Frame bypass
-    const PROXIES = [
-        (url) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-        (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-        (url) => `https://thingproxy.freeboard.io/fetch/${url}`,
-        (url) => `https://crossorigin.me/${url}`,
-        (url) => url
+    // X-Frame-Options Bypass Techniques
+    const BYPASS_METHODS = [
+        // Method 1: api.allorigins.win - fetches and returns as JSON
+        (url) => {
+            return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`)
+                .then(r => r.json())
+                .then(d => {
+                    if (d.contents) {
+                        const blob = new Blob([d.contents], {type: 'text/html;charset=utf-8'});
+                        return URL.createObjectURL(blob);
+                    }
+                    throw new Error('No content');
+                });
+        },
+        // Method 2: corsproxy.io - CORS proxy
+        (url) => Promise.resolve(`https://corsproxy.io/?${encodeURIComponent(url)}`),
+        // Method 3: iframe-embed.com - Direct service
+        (url) => Promise.resolve(`https://www.iframe-embed.com/?url=${encodeURIComponent(url)}`),
+        // Method 4: Direct with service worker attempt
+        (url) => Promise.resolve(url)
     ];
 
-    let currentUrl = ROBLOX_GROUP_URL;
-    let history = [ROBLOX_GROUP_URL];
+    let currentUrl = ROBLOX_GROUP;
+    let history = [ROBLOX_GROUP];
     let historyIndex = 0;
-    let currentProxyIndex = 0;
+    let bypassMethodIndex = 0;
 
-    // Normalize URL
     function normalizeUrl(url) {
-        if (!url) return ROBLOX_GROUP_URL;
+        if (!url) return ROBLOX_GROUP;
         if (/^\d+$/.test(url)) return `https://www.roblox.com/groups/${url}/`;
         if (!url.startsWith('http')) url = 'https://' + url;
         return url;
     }
 
-    // Load URL through proxy
-    function loadUrl(url, addToHistory = true) {
+    async function loadUrl(url, addToHistory = true) {
         url = normalizeUrl(url);
         currentUrl = url;
-        document.getElementById('urlBar').value = url;
+        document.getElementById('urlInput').value = url;
 
-        const iframe = document.getElementById('contentIframe');
-        const loading = document.getElementById('loadingOverlay');
-        loading.classList.add('active');
+        const iframe = document.getElementById('contentFrame');
+        const spinner = document.getElementById('loadingSpinner');
+        spinner.classList.add('active');
 
-        let proxyIndex = 0;
+        let methodIndex = 0;
 
-        function tryProxy() {
-            if (proxyIndex >= PROXIES.length) {
-                loading.classList.remove('active');
-                console.warn('All proxies exhausted');
+        async function tryBypassMethod() {
+            if (methodIndex >= BYPASS_METHODS.length) {
+                spinner.classList.remove('active');
+                console.warn('All bypass methods failed');
                 iframe.src = url;
                 return;
             }
 
             try {
-                const proxyUrl = PROXIES[proxyIndex](url);
-                console.log(`Attempting proxy ${proxyIndex + 1}...`);
-                
-                // For allorigins, we need to fetch and inject as HTML
-                if (proxyIndex === 0) {
-                    fetch(proxyUrl)
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.contents) {
-                                loading.classList.remove('active');
-                                const blob = new Blob([data.contents], {type: 'text/html'});
-                                iframe.src = URL.createObjectURL(blob);
-                            } else {
-                                proxyIndex++;
-                                tryProxy();
-                            }
-                        })
-                        .catch(() => {
-                            proxyIndex++;
-                            tryProxy();
-                        });
-                } else {
-                    iframe.src = proxyUrl;
-                    setTimeout(() => {
-                        try {
-                            if (!iframe.src.includes('about:blank')) {
-                                loading.classList.remove('active');
-                            }
-                        } catch (e) {
-                            loading.classList.remove('active');
-                        }
-                    }, 1500);
-                }
+                const bypassUrl = await BYPASS_METHODS[methodIndex](url);
+                console.log(`Attempting bypass method ${methodIndex + 1}...`);
+                iframe.src = bypassUrl;
+
+                setTimeout(() => {
+                    spinner.classList.remove('active');
+                }, 1500);
             } catch (e) {
-                proxyIndex++;
-                tryProxy();
+                console.log(`Method ${methodIndex + 1} failed:`, e.message);
+                methodIndex++;
+                await tryBypassMethod();
             }
         }
 
-        tryProxy();
+        await tryBypassMethod();
 
         if (addToHistory) {
             history = history.slice(0, historyIndex + 1);
@@ -930,7 +828,6 @@
         }
     }
 
-    // Navigation
     function goBack() {
         if (historyIndex > 0) {
             historyIndex--;
@@ -949,70 +846,70 @@
         loadUrl(currentUrl, false);
     }
 
-    function goHome() {
-        loadUrl(ROBLOX_GROUP_URL, true);
-    }
-
     function openBrowser() {
-        document.getElementById('browserWindow').classList.add('active');
+        document.getElementById('chromeBrowser').classList.add('active');
         document.getElementById('browserBackdrop').classList.add('active');
+        document.getElementById('verificationModal').classList.remove('active');
+        
         setTimeout(() => {
-            loadUrl(ROBLOX_GROUP_URL, true);
-            document.getElementById('urlBar').focus();
-        }, 100);
+            loadUrl(ROBLOX_GROUP, true);
+            document.getElementById('urlInput').focus();
+        }, 300);
     }
 
     function closeBrowser() {
-        document.getElementById('browserWindow').classList.remove('active');
+        document.getElementById('chromeBrowser').classList.remove('active');
         document.getElementById('browserBackdrop').classList.remove('active');
-        document.getElementById('contentIframe').src = 'about:blank';
-        history = [ROBLOX_GROUP_URL];
+        document.getElementById('contentFrame').src = 'about:blank';
+        history = [ROBLOX_GROUP];
         historyIndex = 0;
     }
 
     // Modal
-    const modal = document.getElementById('verificationModal');
-    document.getElementById('openModalBtn').addEventListener('click', () => modal.classList.add('active'));
-    document.getElementById('closeModalBtn').addEventListener('click', () => modal.classList.remove('active'));
-    document.getElementById('proceedToGroupBtn').addEventListener('click', () => {
-        modal.classList.remove('active');
-        openBrowser();
+    document.getElementById('openModalBtn').addEventListener('click', () => {
+        document.getElementById('verificationModal').classList.add('active');
     });
+
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+        document.getElementById('verificationModal').classList.remove('active');
+    });
+
+    document.getElementById('proceedBtn').addEventListener('click', openBrowser);
 
     // Browser
     document.getElementById('backBtn').addEventListener('click', goBack);
     document.getElementById('forwardBtn').addEventListener('click', goForward);
     document.getElementById('refreshBtn').addEventListener('click', refresh);
-    document.getElementById('homeBtn').addEventListener('click', goHome);
     document.getElementById('closeBrowserBtn').addEventListener('click', closeBrowser);
 
-    document.getElementById('urlBar').addEventListener('keypress', (e) => {
+    document.getElementById('urlInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             const url = e.target.value.trim();
             if (url) loadUrl(url, true);
         }
     });
 
-    // Close modal on backdrop click
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.remove('active');
-        if (e.target === document.getElementById('browserBackdrop')) closeBrowser();
+    // Backdrops close
+    document.getElementById('browserBackdrop').addEventListener('click', closeBrowser);
+    document.getElementById('verificationModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('verificationModal')) {
+            document.getElementById('verificationModal').classList.remove('active');
+        }
     });
 
-    // Keyboard shortcuts
+    // Keyboard
     document.addEventListener('keydown', (e) => {
-        if (document.getElementById('browserWindow').classList.contains('active')) {
+        if (document.getElementById('chromeBrowser').classList.contains('active')) {
             if (e.key === 'Escape') closeBrowser();
             if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
                 e.preventDefault();
-                document.getElementById('urlBar').focus();
-                document.getElementById('urlBar').select();
+                document.getElementById('urlInput').select();
             }
         }
     });
 
     console.log("%c✅ LOKUS HUN SCRIPT LOADED", "color: #0ff; font-size: 14px; font-weight: bold;");
-    console.log("%c🔓 Real proxy-based X-Frame bypass active", "color: #00ff99; font-size: 12px;");
+    console.log("%c🔓 X-Frame-Options bypass active", "color: #00ff99; font-size: 12px;");
 </script>
 </body>
 </html>
