@@ -437,44 +437,63 @@
             }
         }
 
-        /* MODERN FAKE BROWSER */
-        .fake-browser-overlay {
+        /* BROWSER WINDOW - NOT FULLSCREEN */
+        .browser-window {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
             background: #0a0f1e;
             z-index: 2000;
             display: none;
             flex-direction: column;
-            animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.4), 0 25px 50px rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 255, 255, 0.3);
         }
 
-        .fake-browser-overlay.active {
+        .browser-window.active {
             display: flex;
         }
 
-        @keyframes slideUp {
+        @keyframes slideIn {
             from {
-                transform: translateY(100%);
+                opacity: 0;
+                transform: translate(-50%, -45%) scale(0.9);
             }
             to {
-                transform: translateY(0);
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
             }
         }
 
-        .browser-bar {
+        .browser-header {
             background: linear-gradient(90deg, #1a1a2e, #16213e);
-            padding: clamp(12px, 3vw, 16px);
+            padding: clamp(10px, 2vw, 14px);
             display: flex;
             align-items: center;
-            gap: clamp(8px, 2vw, 15px);
-            border-bottom: 2px solid rgba(0, 255, 255, 0.4);
+            gap: 12px;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px 10px 0 0;
             flex-wrap: wrap;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 2001;
+        }
+
+        .browser-title-bar {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0ff;
+            font-size: 12px;
+            font-weight: 600;
+            flex: 1;
+            min-width: 200px;
         }
 
         .browser-controls {
@@ -488,12 +507,12 @@
             cursor: pointer;
             background: rgba(0, 255, 255, 0.1);
             padding: 8px 12px;
-            border-radius: 8px;
+            border-radius: 6px;
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 255, 255, 0.2);
             touch-action: manipulation;
-            min-width: 40px;
-            min-height: 40px;
+            min-width: 38px;
+            min-height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -506,7 +525,7 @@
         @media (hover: hover) {
             .browser-btn:hover {
                 background: rgba(0, 255, 255, 0.25);
-                transform: scale(1.1);
+                transform: scale(1.08);
                 box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
             }
         }
@@ -518,11 +537,11 @@
             gap: 8px;
             background: rgba(0, 255, 255, 0.05);
             border: 2px solid rgba(0, 255, 255, 0.3);
-            padding: clamp(8px, 2vw, 12px);
-            border-radius: 30px;
+            padding: 8px 12px;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            min-width: 120px;
-            min-height: 40px;
+            min-width: 150px;
+            min-height: 38px;
         }
 
         .url-bar-container:focus-within {
@@ -536,7 +555,7 @@
             background: transparent;
             border: none;
             color: #0ff;
-            font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-family: 'Courier New', monospace;
             outline: none;
             font-weight: 500;
@@ -548,23 +567,23 @@
 
         .lock-icon {
             color: #00ff99;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: 1rem;
         }
 
         .close-browser {
             background: linear-gradient(90deg, #ff4444, #ff0000);
             border: none;
             color: white;
-            padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 20px);
-            border-radius: 30px;
+            padding: 8px 14px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 700;
             transition: all 0.3s ease;
-            font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+            font-size: 0.85rem;
             text-transform: uppercase;
             box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
             touch-action: manipulation;
-            min-height: 40px;
+            min-height: 38px;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -582,35 +601,38 @@
             }
         }
 
-        .iframe-container {
+        .browser-content {
             flex: 1;
             width: 100%;
             background: white;
             position: relative;
             overflow: hidden;
+            border-radius: 0 0 10px 10px;
         }
 
-        iframe {
+        .browser-content iframe {
             width: 100%;
             height: 100%;
             border: none;
             background: white;
         }
 
-        .loading-indicator {
+        .loading-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
             display: none;
-        }
-
-        .loading-indicator.active {
-            display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .loading-overlay.active {
+            display: flex;
         }
 
         .spinner {
@@ -631,123 +653,68 @@
             color: #0ff;
             font-weight: 600;
             font-size: 0.95rem;
+            margin-top: 15px;
         }
 
-        /* Bypass Notice */
-        .bypass-notice {
-            position: absolute;
-            bottom: clamp(10px, 2vw, 15px);
-            right: clamp(10px, 2vw, 15px);
-            background: rgba(0, 255, 100, 0.15);
-            color: #00ff99;
-            padding: clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 15px);
-            border-radius: 20px;
-            font-size: clamp(0.7rem, 2vw, 0.85rem);
-            z-index: 2001;
-            pointer-events: none;
-            border: 1px solid rgba(0, 255, 100, 0.4);
-            font-weight: 600;
-            box-shadow: 0 0 15px rgba(0, 255, 100, 0.2);
+        /* Overlay backdrop */
+        .browser-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1999;
+            display: none;
         }
 
-        /* Mobile optimizations */
-        @media (max-width: 640px) {
-            body {
-                padding: 12px;
+        .browser-backdrop.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .browser-window {
+                width: 95%;
+                height: 90vh;
             }
 
-            .hero {
-                padding: 30px 18px;
-                border-radius: 20px;
-            }
-
-            .feature-grid {
-                gap: 10px;
-                margin-bottom: 25px;
-            }
-
-            .feature-item {
-                padding: 12px 10px;
-            }
-
-            .modal {
-                padding: 10px;
-            }
-
-            .modal-content {
-                border-radius: 16px;
-                padding: 20px;
-            }
-
-            .close-modal {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .step {
-                padding: 14px;
-                margin: 12px 0;
-            }
-
-            .browser-bar {
-                gap: 6px;
-            }
-
-            .browser-controls {
-                gap: 6px;
-            }
-
-            .browser-btn {
-                padding: 6px 10px;
-                min-width: 36px;
-                min-height: 36px;
+            .browser-header {
+                flex-wrap: wrap;
             }
 
             .url-bar-container {
-                min-height: 36px;
+                min-width: 100%;
+                order: 2;
+                flex-basis: 100%;
+                margin-top: 8px;
             }
 
             .close-browser {
-                padding: 6px 12px;
-                min-height: 36px;
-                font-size: 0.8rem;
+                order: 3;
             }
         }
 
         @media (max-width: 480px) {
-            .get-script-btn {
+            .browser-window {
                 width: 100%;
-                justify-content: center;
+                height: 95vh;
+                border-radius: 8px;
+            }
+
+            .browser-btn {
+                padding: 6px 8px;
+                min-width: 34px;
+                min-height: 34px;
+                font-size: 0.9rem;
             }
 
             .close-browser {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* iOS specific fixes */
-        @supports (padding: max(0px)) {
-            body {
-                padding-left: max(15px, env(safe-area-inset-left));
-                padding-right: max(15px, env(safe-area-inset-right));
-                padding-top: max(15px, env(safe-area-inset-top));
-                padding-bottom: max(15px, env(safe-area-inset-bottom));
+                padding: 6px 10px;
+                min-height: 34px;
             }
 
-            .modal {
-                padding-left: max(15px, env(safe-area-inset-left));
-                padding-right: max(15px, env(safe-area-inset-right));
-                padding-top: max(15px, env(safe-area-inset-top));
-                padding-bottom: max(15px, env(safe-area-inset-bottom));
-            }
-
-            .fake-browser-overlay {
-                padding-left: env(safe-area-inset-left);
-                padding-right: env(safe-area-inset-right);
-                padding-top: env(safe-area-inset-top);
-                padding-bottom: env(safe-area-inset-bottom);
+            .browser-title-bar {
+                display: none;
             }
         }
 
@@ -759,6 +726,15 @@
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
+        }
+
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(15px, env(safe-area-inset-left));
+                padding-right: max(15px, env(safe-area-inset-right));
+                padding-top: max(15px, env(safe-area-inset-top));
+                padding-bottom: max(15px, env(safe-area-inset-bottom));
+            }
         }
     </style>
 </head>
@@ -830,249 +806,213 @@
     </div>
 </div>
 
-<!-- Modern Fake Browser -->
-<div id="fakeBrowser" class="fake-browser-overlay">
-    <div class="browser-bar">
+<!-- Browser Backdrop -->
+<div class="browser-backdrop" id="browserBackdrop"></div>
+
+<!-- Browser Window (Not Fullscreen) -->
+<div class="browser-window" id="browserWindow">
+    <div class="browser-header">
         <div class="browser-controls">
-            <button class="browser-btn" id="fakeBackBtn" title="Back">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <button class="browser-btn" id="fakeForwardBtn" title="Forward">
-                <i class="fas fa-arrow-right"></i>
-            </button>
-            <button class="browser-btn" id="fakeRefreshBtn" title="Refresh">
-                <i class="fas fa-sync-alt"></i>
-            </button>
-            <button class="browser-btn" id="fakeHomeBtn" title="Home">
-                <i class="fas fa-home"></i>
-            </button>
+            <button class="browser-btn" id="backBtn" title="Back"><i class="fas fa-arrow-left"></i></button>
+            <button class="browser-btn" id="forwardBtn" title="Forward"><i class="fas fa-arrow-right"></i></button>
+            <button class="browser-btn" id="refreshBtn" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+            <button class="browser-btn" id="homeBtn" title="Home"><i class="fas fa-home"></i></button>
         </div>
 
         <div class="url-bar-container">
             <i class="fas fa-lock lock-icon"></i>
-            <input 
-                type="text" 
-                class="url-bar" 
-                id="urlInput" 
-                placeholder="URL or Group ID..."
-                spellcheck="false"
-                autocomplete="off"
-            >
+            <input type="text" class="url-bar" id="urlBar" placeholder="Enter URL or Group ID..." spellcheck="false" autocomplete="off">
         </div>
 
-        <button class="close-browser" id="closeBrowserBtn">
-            <i class="fas fa-times"></i>
-        </button>
+        <button class="close-browser" id="closeBrowserBtn"><i class="fas fa-times"></i> Close</button>
     </div>
 
-    <div class="iframe-container">
-        <div class="loading-indicator" id="loadingIndicator">
+    <div class="browser-content">
+        <div class="loading-overlay" id="loadingOverlay">
             <div class="spinner"></div>
-            <div class="loading-text">Loading...</div>
+            <div class="loading-text">Loading content...</div>
         </div>
-        <iframe id="mainIframe" src="about:blank" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-modals allow-top-navigation"></iframe>
-    </div>
-
-    <div class="bypass-notice">
-        <i class="fas fa-shield-check"></i> BYPASS ACTIVE
+        <iframe id="contentIframe" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-modals allow-top-navigation"></iframe>
     </div>
 </div>
 
 <script>
-    // ========= CONFIGURATION ==========
     const ROBLOX_GROUP_URL = "https://www.roblox.com/groups/3451464/Lokus-Hub#!/about";
-    
-    // Advanced Bypass Proxies - Multiple fallback options
-    const BYPASS_METHODS = [
-        (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+
+    // Proxy services for X-Frame bypass
+    const PROXIES = [
+        (url) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
         (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-        (url) => `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}`,
+        (url) => `https://thingproxy.freeboard.io/fetch/${url}`,
         (url) => `https://crossorigin.me/${url}`,
         (url) => url
     ];
 
     let currentUrl = ROBLOX_GROUP_URL;
-    let historyStack = [ROBLOX_GROUP_URL];
+    let history = [ROBLOX_GROUP_URL];
     let historyIndex = 0;
-    let loadAttempt = 0;
+    let currentProxyIndex = 0;
 
-    // Enhanced URL validation
+    // Normalize URL
     function normalizeUrl(url) {
         if (!url) return ROBLOX_GROUP_URL;
-        
-        // If it's a number, treat as group ID
-        if (/^\d+$/.test(url)) {
-            return `https://www.roblox.com/groups/${url}/`;
-        }
-        
-        // Add protocol if missing
-        if (!url.startsWith('http')) {
-            url = 'https://' + url;
-        }
-        
+        if (/^\d+$/.test(url)) return `https://www.roblox.com/groups/${url}/`;
+        if (!url.startsWith('http')) url = 'https://' + url;
         return url;
     }
 
-    // Advanced iframe loading with multiple bypass attempts
-    function loadUrlInIframe(url, addToHistory = true) {
-        if (!url || url === 'about:blank') return;
-        
+    // Load URL through proxy
+    function loadUrl(url, addToHistory = true) {
         url = normalizeUrl(url);
         currentUrl = url;
-        document.getElementById('urlInput').value = url;
-        
-        const iframe = document.getElementById('mainIframe');
-        const loader = document.getElementById('loadingIndicator');
-        
-        // Show loading indicator
-        loader.classList.add('active');
-        loadAttempt = 0;
+        document.getElementById('urlBar').value = url;
 
-        function attemptLoad() {
-            if (loadAttempt >= BYPASS_METHODS.length) {
-                loader.classList.remove('active');
-                console.warn("All bypass methods exhausted");
+        const iframe = document.getElementById('contentIframe');
+        const loading = document.getElementById('loadingOverlay');
+        loading.classList.add('active');
+
+        let proxyIndex = 0;
+
+        function tryProxy() {
+            if (proxyIndex >= PROXIES.length) {
+                loading.classList.remove('active');
+                console.warn('All proxies exhausted');
                 iframe.src = url;
                 return;
             }
 
             try {
-                const bypassUrl = BYPASS_METHODS[loadAttempt](url);
-                console.log(`Attempt ${loadAttempt + 1}`);
+                const proxyUrl = PROXIES[proxyIndex](url);
+                console.log(`Attempting proxy ${proxyIndex + 1}...`);
                 
-                iframe.src = bypassUrl;
-                
-                setTimeout(() => {
-                    try {
-                        if (iframe.contentDocument || iframe.contentWindow) {
-                            loader.classList.remove('active');
-                            console.log("✅ Page loaded!");
-                        } else {
-                            loadAttempt++;
-                            attemptLoad();
+                // For allorigins, we need to fetch and inject as HTML
+                if (proxyIndex === 0) {
+                    fetch(proxyUrl)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.contents) {
+                                loading.classList.remove('active');
+                                const blob = new Blob([data.contents], {type: 'text/html'});
+                                iframe.src = URL.createObjectURL(blob);
+                            } else {
+                                proxyIndex++;
+                                tryProxy();
+                            }
+                        })
+                        .catch(() => {
+                            proxyIndex++;
+                            tryProxy();
+                        });
+                } else {
+                    iframe.src = proxyUrl;
+                    setTimeout(() => {
+                        try {
+                            if (!iframe.src.includes('about:blank')) {
+                                loading.classList.remove('active');
+                            }
+                        } catch (e) {
+                            loading.classList.remove('active');
                         }
-                    } catch (e) {
-                        loader.classList.remove('active');
-                        console.log("✅ Page loaded (cross-origin)");
-                    }
-                }, 1500);
-
+                    }, 1500);
+                }
             } catch (e) {
-                console.error("Bypass error:", e);
-                loadAttempt++;
-                attemptLoad();
+                proxyIndex++;
+                tryProxy();
             }
         }
 
-        attemptLoad();
+        tryProxy();
 
         if (addToHistory) {
-            if (historyIndex < historyStack.length - 1) {
-                historyStack = historyStack.slice(0, historyIndex + 1);
-            }
-            historyStack.push(url);
-            historyIndex = historyStack.length - 1;
+            history = history.slice(0, historyIndex + 1);
+            history.push(url);
+            historyIndex = history.length - 1;
         }
     }
 
-    // Navigation Functions
+    // Navigation
     function goBack() {
         if (historyIndex > 0) {
             historyIndex--;
-            loadUrlInIframe(historyStack[historyIndex], false);
+            loadUrl(history[historyIndex], false);
         }
     }
 
     function goForward() {
-        if (historyIndex < historyStack.length - 1) {
+        if (historyIndex < history.length - 1) {
             historyIndex++;
-            loadUrlInIframe(historyStack[historyIndex], false);
+            loadUrl(history[historyIndex], false);
         }
     }
 
     function refresh() {
-        loadUrlInIframe(currentUrl, false);
+        loadUrl(currentUrl, false);
     }
 
     function goHome() {
-        loadUrlInIframe(ROBLOX_GROUP_URL, true);
+        loadUrl(ROBLOX_GROUP_URL, true);
     }
 
-    // URL Input Handler
-    document.getElementById('urlInput').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const url = e.target.value.trim();
-            if (url) {
-                loadUrlInIframe(url, true);
-            }
-        }
-    });
-
-    // Modal Management
-    const modal = document.getElementById('verificationModal');
-    const openBtn = document.getElementById('openModalBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const proceedBtn = document.getElementById('proceedToGroupBtn');
-    const fakeBrowser = document.getElementById('fakeBrowser');
-    const closeBrowserBtn = document.getElementById('closeBrowserBtn');
-
-    function openModal() {
-        modal.classList.add('active');
-    }
-
-    function closeModal() {
-        modal.classList.remove('active');
-    }
-
-    function openFakeBrowser() {
-        closeModal();
-        fakeBrowser.classList.add('active');
+    function openBrowser() {
+        document.getElementById('browserWindow').classList.add('active');
+        document.getElementById('browserBackdrop').classList.add('active');
         setTimeout(() => {
-            loadUrlInIframe(ROBLOX_GROUP_URL, true);
-            document.getElementById('urlInput').focus();
+            loadUrl(ROBLOX_GROUP_URL, true);
+            document.getElementById('urlBar').focus();
         }, 100);
     }
 
-    function closeFakeBrowser() {
-        fakeBrowser.classList.remove('active');
-        const iframe = document.getElementById('mainIframe');
-        iframe.src = 'about:blank';
-        historyStack = [ROBLOX_GROUP_URL];
+    function closeBrowser() {
+        document.getElementById('browserWindow').classList.remove('active');
+        document.getElementById('browserBackdrop').classList.remove('active');
+        document.getElementById('contentIframe').src = 'about:blank';
+        history = [ROBLOX_GROUP_URL];
         historyIndex = 0;
     }
 
-    // Event Listeners
-    openBtn.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-    proceedBtn.addEventListener('click', openFakeBrowser);
-    closeBrowserBtn.addEventListener('click', closeFakeBrowser);
+    // Modal
+    const modal = document.getElementById('verificationModal');
+    document.getElementById('openModalBtn').addEventListener('click', () => modal.classList.add('active'));
+    document.getElementById('closeModalBtn').addEventListener('click', () => modal.classList.remove('active'));
+    document.getElementById('proceedToGroupBtn').addEventListener('click', () => {
+        modal.classList.remove('active');
+        openBrowser();
+    });
 
-    document.getElementById('fakeBackBtn').addEventListener('click', goBack);
-    document.getElementById('fakeForwardBtn').addEventListener('click', goForward);
-    document.getElementById('fakeRefreshBtn').addEventListener('click', refresh);
-    document.getElementById('fakeHomeBtn').addEventListener('click', goHome);
+    // Browser
+    document.getElementById('backBtn').addEventListener('click', goBack);
+    document.getElementById('forwardBtn').addEventListener('click', goForward);
+    document.getElementById('refreshBtn').addEventListener('click', refresh);
+    document.getElementById('homeBtn').addEventListener('click', goHome);
+    document.getElementById('closeBrowserBtn').addEventListener('click', closeBrowser);
 
-    // Close modal on outside click
+    document.getElementById('urlBar').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const url = e.target.value.trim();
+            if (url) loadUrl(url, true);
+        }
+    });
+
+    // Close modal on backdrop click
     window.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+        if (e.target === modal) modal.classList.remove('active');
+        if (e.target === document.getElementById('browserBackdrop')) closeBrowser();
     });
 
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
-        if (fakeBrowser.classList.contains('active')) {
-            if (e.key === 'Escape') closeFakeBrowser();
-            if (e.ctrlKey || e.metaKey) {
-                if (e.key === 'l') {
-                    e.preventDefault();
-                    document.getElementById('urlInput').focus();
-                    document.getElementById('urlInput').select();
-                }
+        if (document.getElementById('browserWindow').classList.contains('active')) {
+            if (e.key === 'Escape') closeBrowser();
+            if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+                e.preventDefault();
+                document.getElementById('urlBar').focus();
+                document.getElementById('urlBar').select();
             }
         }
     });
 
-    console.log("%c✅ LOKUS HUN SCRIPT LOADED", "color: #0ff; font-size: 16px; font-weight: bold;");
-    console.log("%c🔓 Advanced iframe bypass system active", "color: #00ff99; font-size: 14px;");
+    console.log("%c✅ LOKUS HUN SCRIPT LOADED", "color: #0ff; font-size: 14px; font-weight: bold;");
+    console.log("%c🔓 Real proxy-based X-Frame bypass active", "color: #00ff99; font-size: 12px;");
 </script>
 </body>
 </html>
